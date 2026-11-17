@@ -1,0 +1,11 @@
+Test Case ID,Test Scenario,Input,Expected Result,Actual Result,Status
+TC01,Single Client Upload,1 MB file (test1.bin),File uploaded successfully,"Uploaded successfully as file ID 1; 1,048,576 bytes; SHA-256 verified YES.",PASS
+TC02,Single Client Download,1 MB file (test1.bin),File downloaded successfully,Downloaded successfully; saved as downloaded_abc_1_test1.bin; SHA-256 verified YES.,PASS
+TC03,Large File Upload,10 MB file (test3.bin),File uploaded successfully,"Uploaded successfully as file ID 6; 10,485,760 bytes; SHA-256 verified YES.",PASS
+TC04,Simultaneous Upload,Two clients uploading 1 MB and 5 MB files,Both uploads complete successfully,Both client uploads completed successfully with separate file IDs 4 and 5; both SHA-256 checks passed.,PASS
+TC05,Simultaneous Download,Two clients downloading file IDs 4 and 5,Both downloads complete successfully,Both downloads completed successfully; 1 MB and 5 MB files saved; both SHA-256 checks passed.,PASS
+TC06,Authentication Success,Correct username and password,Access granted,Login successful with registered username abc and correct password.,PASS
+TC07,Authentication Failure,Incorrect password,Access denied,Login rejected with message: Authentication failed: Invalid username or password.,PASS
+TC08,SDN Access Control,h3 (10.0.0.3) attempts to reach h2 (10.0.0.2),Blocked client traffic is dropped,h3-to-h2 ping showed 100% packet loss; OpenFlow priority-200 DROP rule for 10.0.0.3 to 10.0.0.2 was present and its packet counter increased. TCP-specific connection result was inconclusive.,PASS
+TC09,Bandwidth Monitoring,10 MB file transfer through Mininet,Traffic statistics displayed,Controller displayed switch-port RX/TX byte counters and non-zero rates during transfer (16.795 Mbps observed).,PASS
+TC10,File Metadata,Upload a file and list stored files,File details stored in database,"List Files displayed uploaded file names, IDs, owner, and file sizes, confirming metadata retrieval.",PASS
